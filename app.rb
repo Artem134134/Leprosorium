@@ -32,7 +32,7 @@ configure do
 	(
     id           INTEGER PRIMARY KEY AUTOINCREMENT,
     created_date DATE,
-    content      TEXT
+    content      TEXT,
     post_id INTEGER
 )'
 
@@ -81,6 +81,9 @@ get '/details/:id_post' do
 # выбираем этот один пост в переменную @row
 	@row = results[0]
 
+	# выбираем комментарии пост в переменную @row
+	@contents = @db.execute 'select * from Comments where post_id = ? order by id',[post_id]
+
 	# возвращаем представление details.erb
 	erb :details
 end
@@ -92,6 +95,10 @@ post 'details/:post_id' do
 post_id = params[:post_id]
 content = params[:content]
 
-erb "You typed content #{content} for post #{post_id}"	
+@db.execute 'insert into Comments (content, created_date, post_id)
+ values (?,datetime(), ?)', [content, post_id]
+
+# перенаправление на страницу поста
+	redirect to ('/details/' + post_id	)
 
 end
