@@ -7,6 +7,12 @@ get '/' do
 	erb "Hello! <a href=\"https://github.com/bootstrap-ruby/sinatra-bootstrap\">Original</a> pattern has been modified for <a href=\"http://rubyschool.us/\">Ruby School</a>"			
 end
 
-get '/something' do
- erb :new
+get '/new' do
+	erb :new
 end
+
+post '/new' do
+	content = params[:content]
+	erb "You typed #{content}"	
+
+end	
