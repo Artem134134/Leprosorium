@@ -5,7 +5,7 @@ require 'sinatra/reloader'
 require 'sqlite3'
 
 def init_db
-	@db = SQLite3::Database.new 'leprosorium.db'
+	@db = SQLite3::Database.new 'leprosorium.sqlite'
 	@db.results_as_hash = true
 end
 
@@ -20,15 +20,14 @@ end
 configure do
 	# инициализация БД
 	init_db 
-
 	# Создает таблицу если таблица не существует
-	@db.execute'CREATE TABLE IF NOT EXISTS Posts (
+	@db.execute 'CREATE TABLE IF NOT EXISTS Posts (
     id           INTEGER PRIMARY KEY AUTOINCREMENT,
     created_date DATE,
     content      TEXT
 )'
 
-	@db.execute'CREATE TABLE IF NOT EXISTS Comments 
+	@db.execute 'CREATE TABLE IF NOT EXISTS Comments 
 	(
     id           INTEGER PRIMARY KEY AUTOINCREMENT,
     created_date DATE,
@@ -40,7 +39,7 @@ end
 
 get '/' do
 	# выбираем список постов из БД
-	results = @db.execute 'select * from Posts order by id desc'
+	@results = @db.execute 'select * from Posts order by id desc'
 	erb :index 		
 end
 
@@ -56,13 +55,13 @@ post '/new' do
 	# получаем переменную из post-запроса
 	@content = params[:content]
 
-	if content.size <= 0
+	if @content.size <= 0
 		@error = 'Type post text'	
 		return erb :new
 	end
 
 # сохранение данных в БД
-	@db.execute 'insert into Posts (content, created_date) values (?,datetime())', [content]
+	@db.execute 'insert into Posts (content, created_date) values (?,datetime())', [@content]
 
 	# перенаправление на главную страницу
 	redirect to '/'	
