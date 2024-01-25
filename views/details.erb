@@ -11,12 +11,14 @@
   <table class="table table-striped" style="font-size:125%">
   <thead>
   <tr>
+    <th>Author</th>
     <th>Content:</th>
     <th>Added at</th>
   <tbody>
      <% @results.each do |post| %>
 
   <tr>
+    <td><%= post['author'] %></td>
     <td><%= post['content'] %></td>
     <td><%= post['created_date'] %></td>
     
@@ -31,11 +33,13 @@
   <table class="table table-striped" style="font-size:85%">
   <thead>
   <tr>
+    <th>Author</th>
     <th>Comments:</th>
     <th>Added at</th>
   <tbody>
      <% @comments.each do |comment| %>
   <tr>
+    <td><%= comment['author'] %></td>
     <td><%= comment['content'] %></td>
     <td><%= comment['created_date'] %></td>   
   </tr>
@@ -46,7 +50,13 @@
 
 
 <br>
+<br>
 <form action="/details/<%= @row['id']%>" method="POST">
+  <div class="input-group mb-3">
+    <span class="input-group-text" id="basic-addon1">Author of the comment</span>
+    <input type="text" name ="author" class="form-control" placeholder="author" aria-label="Username" aria-describedby="basic-addon1">    
+  </div>
+  <br>
   <div class="mb-3">
   <label for="exampleFormControlTextarea1" class="form-label">Comments:</label>
   <textarea name ="content" class="form-control" id="exampleFormControlTextarea1" rows="5" placeholder="Text Comments..."></textarea>

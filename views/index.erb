@@ -13,13 +13,13 @@
   <table class="table table-striped">
   <thead>
   <tr>
-    <th>Id</th>
+    <th>Author</th>
     <th>Content</th>
     <th>Added at</th>
   <tbody>
      <% @results.each do |post| %>
   <tr>
-    <td><%= post['id'] %></td>
+    <td><%= post['author'] %></td>
     <td><%= post['content'] %></td>
     <td><%= post['created_date'] %></td>
     <td> <a href="/details/<%= post['id'] %>">Comments</a></td>    
