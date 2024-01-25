@@ -6,15 +6,22 @@
 	<title>new post</title>
 </head>
 <body>
-	<h2>Add New Post</h2>
+  <h2>Add New Post</h2>
 	<p>
+	<br>	
 	<form action="/new" method="POST" role="form">
+		<div class="input-group mb-3">
+	    <span class="input-group-text" id="basic-addon1">Author of the post</span>
+	    <input type="text" name ="author" class="form-control" placeholder="author" aria-label="Username" aria-describedby="basic-addon1">
+    </div>
+    <br>
 		<div class="form-floating">
-	  		<textarea name="content" class="form-control" placeholder="Leave a comment here" id="floatingTextarea2" style="height: 100px"></textarea>
-	  		<label for="floatingTextarea2">Comments</label>
-		</div>
-		<br/>
-	  <button type="submit" class="btn btn-primary">Send</button>
+		<textarea name="content" class="form-control" placeholder="Leave a comment here" id="floatingTextarea2" style="height: 100px"></textarea>
+		<label for="floatingTextarea2">Comments</label>
+    </div>
+	<br/>
+
+	    <button type="submit" class="btn btn-primary">Send</button>
 	 </form> 	
 	</p> 
 	
