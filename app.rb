@@ -102,8 +102,8 @@ post '/details/:post_id' do
 	author = params[:author]
 	content = params[:content]
 
-	@db.execute 'insert into Comments (content, created_date, post_id)
-	 values (?,datetime(), ?)', [content, @post_id]
+	@db.execute 'insert into Comments (author, content, created_date, post_id) 
+               values (?, ?, datetime(),?)',[author, content, @post_id]
 
 	# перенаправление на страницу поста
 		redirect to ('/details/' + @post_id)
