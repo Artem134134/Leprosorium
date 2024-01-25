@@ -57,7 +57,8 @@ post '/new' do
 	# получаем переменные из post-запроса
 	author = params[:author]
 	content = params[:content]
-
+	
+#проверка на присутствие формы
 	if author.size <= 0
 		  @error = 'Fill in the Author field!'	
 		  return erb :new
@@ -102,6 +103,17 @@ post '/details/:post_id' do
 	author = params[:author]
 	content = params[:content]
 
+# проверка на присутствие формы
+	if author.size <= 0
+    @error = 'Enter user name!'
+     return erb :new 
+     
+  elsif content.size <= 0   
+     @error = 'Enter post text!'
+     return erb :new
+  end
+
+  	# сохранение данных в БД
 	@db.execute 'insert into Comments (author, content, created_date, post_id) 
                values (?, ?, datetime(),?)',[author, content, @post_id]
 
