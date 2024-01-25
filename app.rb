@@ -23,6 +23,7 @@ configure do
 	# Создает таблицу Posts если таблица не существует
 	@db.execute 'CREATE TABLE IF NOT EXISTS Posts (
     id           INTEGER PRIMARY KEY AUTOINCREMENT,
+    author TEXT,
     created_date DATE,
     content      TEXT
 )'
