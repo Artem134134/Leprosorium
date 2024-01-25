@@ -57,9 +57,13 @@ post '/new' do
 	author = params[:author]
 	content = params[:content]
 
-	if content.size <= 0
-		@error = 'Type post text'	
-		return erb :new
+	if author.size <= 0
+		  @error = 'Fill in the Author field!'	
+		  return erb :new
+
+	elsif content.size <= 0
+		  @error = 'Fill in the Comment field!'	
+		  return erb :new
 	end
 
 # сохранение данных в БД
