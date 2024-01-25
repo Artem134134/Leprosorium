@@ -22,17 +22,18 @@ configure do
 	init_db 
 	# Создает таблицу Posts если таблица не существует
 	@db.execute 'CREATE TABLE IF NOT EXISTS Posts (
-    id           INTEGER PRIMARY KEY AUTOINCREMENT,
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
     author TEXT,
     created_date DATE,
-    content      TEXT
+    content TEXT
 )'
 	# Создает таблицу Comments если таблица не существует
 	@db.execute 'CREATE TABLE IF NOT EXISTS Comments 
 	(
-    id           INTEGER PRIMARY KEY AUTOINCREMENT,
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    author TEXT,
+    content TEXT,
     created_date DATE,
-    content      TEXT,
     post_id INTEGER
 )'
 
@@ -98,6 +99,7 @@ end
 post '/details/:post_id' do
 
 	@post_id = params[:post_id]
+	author = params[:author]
 	content = params[:content]
 
 	@db.execute 'insert into Comments (content, created_date, post_id)
