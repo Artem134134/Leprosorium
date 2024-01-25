@@ -53,7 +53,8 @@ end
 # обработчик из post-запроса /new
 #(браузер отправляет данные на сервер)
 post '/new' do
-	# получаем переменную из post-запроса
+	# получаем переменные из post-запроса
+	author = params[:author]
 	content = params[:content]
 
 	if content.size <= 0
@@ -62,8 +63,8 @@ post '/new' do
 	end
 
 # сохранение данных в БД
-	@db.execute 'insert into Posts (content, created_date) values (?,datetime())', [content]
-
+  @db.execute 'insert into Posts (author, content, created_date) values (?, ?, datetime())',[author, content]
+    
 	# перенаправление на главную страницу
 	redirect to '/'	
 end	
