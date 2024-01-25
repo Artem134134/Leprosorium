@@ -1,35 +1,59 @@
-<h4>Latest posts:</h4>
-	<br/>
-	<p>
-		<%= @row['content'] %>
-		<br/>
-		<br/>
-	Added at <%= @row['created_date'] %>
-	</p>
-	<br/>
-	<h4>Comments:</h4>
-	<br/>
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>details</title>
+</head>
+<body>
+  <h3>Post details</h3>
+  <br>
+  <table class="table table-striped" style="font-size:125%">
+  <thead>
+  <tr>
+    <th>Content:</th>
+    <th>Added at</th>
+  <tbody>
+     <% @results.each do |post| %>
 
-	<% @comments.each do |comment| %>
-	<p>
-		<%= comment['comment'] %>
-		<br />
-		<br />
-	<span style="font-size: 75%; color: #999">	Added at <%= comment['created_date'] %></span>
+  <tr>
+    <td><%= post['content'] %></td>
+    <td><%= post['created_date'] %></td>
+    
+  </tr>
+</thead>
 
-	</p>
-	<hr/>
-	<% end %>
+<% end %>
+    </table>
 
-	<p>
-		<form action="/details/<%= @row['id'] %>" method="POST" role="form">
-	<div class="form-floating">
-  		<textarea name="content" class="form-control" placeholder="Type comment text here" id="floatingTextarea2" style="height: 100px"></textarea>
-  		<label for="floatingTextarea2">Comments</label>
-	</div>
-	<br/>
-  			<button type="submit" class="btn btn-primary">Add comment</button>
- 		</form>
-</p>
+  <br>
+  <br>
+  <table class="table table-striped" style="font-size:85%">
+  <thead>
+  <tr>
+    <th>Comments:</th>
+    <th>Added at</th>
+  <tbody>
+     <% @comments.each do |comment| %>
+  <tr>
+    <td><%= comment['content'] %></td>
+    <td><%= comment['created_date'] %></td>   
+  </tr>
+</thead>
+
+<% end %>
+    </table>
 
 
+<br>
+<form action="/details/<%= @row['id']%>" method="POST">
+  <div class="mb-3">
+  <label for="exampleFormControlTextarea1" class="form-label">Comments:</label>
+  <textarea name ="content" class="form-control" id="exampleFormControlTextarea1" rows="5" placeholder="Text Comments..."></textarea>
+</div>
+<br>
+<button type="submit" class="btn btn-primary">Add comment</button>
+</form>
+
+</body>
+</html>

@@ -1,56 +1,33 @@
-<<!DOCTYPE html>
+<!DOCTYPE html>
 <html>
 <head>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>index</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>index</title>
 </head>
 <body>
 
-<h2>Latest posts:</h2>
-<br/>
-<% @results.each do |post| %>
-	<p>
-		<%= post['content'] %>
-		<br/>
-		<br/>
-	Added at <%= post['created_date'] %>
-	<br/>
-	<br/>
-	<a href="/details/<%= post['id'] %>">Comments</a>
-	</p>
-	<hr/>
-<% end %>
-
-
-
-
-
-
-
+  <h1>Latest posts: </h1>
+  <br>
+  <br>
   <table class="table table-striped">
   <thead>
   <tr>
+    <th>Id</th>
     <th>Content</th>
     <th>Added at</th>
-
   <tbody>
      <% @results.each do |post| %>
-
   <tr>
+    <td><%= post['id'] %></td>
     <td><%= post['content'] %></td>
     <td><%= post['created_date'] %></td>
-    <td><a href="/details/<%= post['id'] %>">Comments</a></td>
-</td>
-    
+    <td> <a href="/details/<%= post['id'] %>">Comments</a></td>    
   </tr>
 </thead>
-
 <% end %>
     </table>
   </tbody>
 
 </body>
 </html>
-
-
