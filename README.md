@@ -36,12 +36,10 @@ Then open [http://localhost:4567/](http://localhost:4567/)
 
 ____
 ### Screen shot:
-![]()
-![]()
-![]()
-![]()
-![]()
-
+![new post](https://github.com/Artem134134/Leprosorium/blob/master/public/screenshots/new_post.png)
+![error](https://github.com/Artem134134/Leprosorium/blob/master/public/screenshots/error.png)
+![see all posts](https://github.com/Artem134134/Leprosorium/blob/master/public/screenshots/see_all_posts.png)
+![comment with posts](https://github.com/Artem134134/Leprosorium/blob/master/public/screenshots/comment_with_posts.png)
 
 
 ***Cleaned version of*** [ruby-sinatra-bootstrap](https://github.com/bootstrap-ruby/sinatra-bootstrap)
